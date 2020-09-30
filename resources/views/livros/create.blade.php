@@ -1,27 +1,26 @@
 @extends('layouts.app')
 @section('content')
 
-<form action="{{ route('livros.create') }}">
-
+<form action="{{ route('livros.store') }}" method="POST">
     @csrf
     <div class="form-group">
         <label for="exampleTitle">Title</label>
-        <input type="title" class="form-control" placeholder="Title Of Book">
+        <input type="text" class="form-control" name="title">
     </div>
 
     <div class="form-group">
         <label for="exampleNote">Note</label>
-        <input type="note" class="form-control" placeholder="Note">
+        <input type="number" class="form-control" name="note">
     </div>
 
     <div class="form-group">
         <label for="exampleAuthor">Author</label>
-        <input type="author" class="form-control" placeholder="Author">
+        <input type="text" class="form-control" name="author">
     </div>
 
     <div class="form-group">
         <label for="examplepublisher">publisher</label>
-        <input type="title" class="form-control" placeholder="Publisher">
+        <input type="text" class="form-control" name="publisher">
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>

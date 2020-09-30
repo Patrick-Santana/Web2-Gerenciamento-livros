@@ -14,7 +14,9 @@ class LivroController extends Controller
      */
     public function index()
     {
-        //
+        $livros = Livro::all();
+
+        return view('livros.index', compact('livros'));
     }
 
     /**
@@ -35,7 +37,9 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Livro::create($request->all());
+        return redirect('livros')->with('success', 'Livro cadastrado com sucesso');
+
     }
 
     /**
@@ -46,7 +50,7 @@ class LivroController extends Controller
      */
     public function show(Livro $livro)
     {
-        //
+        return view('livros.show', compact('livro'));
     }
 
     /**
@@ -57,7 +61,7 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        //
+        return view('livros.edit',compact('livro'));
     }
 
     /**
@@ -69,7 +73,9 @@ class LivroController extends Controller
      */
     public function update(Request $request, Livro $livro)
     {
-        //
+        $livro->update($request->all());
+
+        return redirect()->route('livros.index');
     }
 
     /**
@@ -80,6 +86,8 @@ class LivroController extends Controller
      */
     public function destroy(Livro $livro)
     {
-        //
+        $livro->delete();
+
+        return redirect()->route('livros.index');
     }
 }
