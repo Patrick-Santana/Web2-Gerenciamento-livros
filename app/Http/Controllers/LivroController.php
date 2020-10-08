@@ -14,7 +14,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = Livro::all();
+        $livros = Livro::paginate(4);
 
         return view('livros.index', compact('livros'));
     }
@@ -61,7 +61,7 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        return view('livros.edit',compact('livro'));
+        return view('livros.edit',compact('livro'))->with('success', 'Livro Alterado com Sucesso');
     }
 
     /**
@@ -75,7 +75,7 @@ class LivroController extends Controller
     {
         $livro->update($request->all());
 
-        return redirect()->route('livros.index');
+        return redirect()->route('livros.index')->with('success', 'Livro Atualizado com sucesso');
     }
 
     /**
@@ -88,6 +88,6 @@ class LivroController extends Controller
     {
         $livro->delete();
 
-        return redirect()->route('livros.index');
+        return redirect()->route('livros.index')->with('success', 'Livro Excluído com sucesso');
     }
 }
