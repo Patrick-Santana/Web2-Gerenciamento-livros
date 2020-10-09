@@ -11,4 +11,8 @@ class Livro extends Model
     protected $fillable = [
         'title', 'note', 'author', 'publisher',
     ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

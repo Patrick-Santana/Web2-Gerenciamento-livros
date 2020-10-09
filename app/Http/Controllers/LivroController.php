@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LivroController extends Controller
 {
@@ -14,7 +15,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = Livro::paginate(4);
+        $livros = Livro::paginate(3);
 
         return view('livros.index', compact('livros'));
     }
@@ -37,7 +38,11 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        Livro::create($request->all());
+       // Livro::create($request->all());
+        $livro = new Livro($request->all());
+
+        $livro->save();
+
         return redirect('livros')->with('success', 'Livro cadastrado com sucesso');
 
     }
